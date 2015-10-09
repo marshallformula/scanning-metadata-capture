@@ -1,0 +1,18 @@
+{
+  "name": "scanning-metadata-capture",
+  "version": "0.0.1",
+  "description": "enable capture of metatdata for images in a directory",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron ."
+  },
+  "author": "@marshallformula",
+  "license": "ISC",
+  "devDependencies": {
+    "electron-prebuilt": "^0.33.6"
+  },
+  "dependencies": {
+    "chokidar": "^1.2.0"
+  }
+}
