@@ -2,17 +2,32 @@
   "name": "scanning-metadata-capture",
   "version": "0.0.1",
   "description": "enable capture of metatdata for images in a directory",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "electron ."
+    "start": "electron . | bunyan",
+    "predev": "npm run clean",
+    "dev": "gulp watch",
+    "build": "gulp build",
+    "prebuild": "npm run clean",
+    "clean": "gulp clean"
   },
   "author": "@marshallformula",
   "license": "ISC",
   "devDependencies": {
-    "electron-prebuilt": "^0.33.6"
+    "babel-preset-es2015": "^6.0.14",
+    "del": "^2.0.2",
+    "electron-prebuilt": "^0.33.6",
+    "gulp": "^3.9.0",
+    "gulp-babel": "^6.0.0",
+    "gulp-sass": "^2.1.0",
+    "gulp-sourcemaps": "^1.6.0",
+    "nodemon": "^1.7.1"
   },
   "dependencies": {
-    "chokidar": "^1.2.0"
+    "bunyan": "^1.5.1",
+    "chokidar": "^1.2.0",
+    "react": "^0.14.1",
+    "react-dom": "^0.14.1"
   }
 }

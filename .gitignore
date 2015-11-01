@@ -2,3 +2,7 @@ node_modules
 .idea
 .vscode
 *.sublime-*
+typings
+**/*.DS_Store
+npm-debug.log
+lib
