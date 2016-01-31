@@ -3,7 +3,7 @@ var app = require('app');  // Module to control application life.
 var BrowserWindow = require('browser-window');  // Module to create native browser window.
 
 // Report crashes to our server.
-require('crash-reporter').start();
+// require('crash-reporter').start();
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -27,7 +27,7 @@ app.on('ready', function() {
 
   // and load the index.html of the app.
   var html = 'file://' + require('path').join(__dirname, '..', 'lib/index.html');
-  mainWindow.loadUrl(html);
+  mainWindow.loadURL(html);
 
 
 

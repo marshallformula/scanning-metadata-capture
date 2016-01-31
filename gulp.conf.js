@@ -5,4 +5,4 @@ module.exports = {
 		markup: 'src/app/**/*.html',
 		styles: 'src/app/**/*.scss'
 	}
-}
+};
