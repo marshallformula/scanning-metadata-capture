@@ -22,7 +22,7 @@ const App = React.createClass({
       this.setState(({ data }) => ({
         data: data.set('style', {left: x}).set('right', this.refs.main.clientWidth -x)
       }));
-      
+
     }, (err) => console.log(err));
 
   },
@@ -30,7 +30,7 @@ const App = React.createClass({
     const data = this.state.data;
     return (
       <div id="main" ref="main">
-
+        <header />
         <Viewer right={data.get('right')}/>
         <div id="divider" style={data.get('style')} ref="divider"></div>
         <Tags left={data.get('style').left}/>

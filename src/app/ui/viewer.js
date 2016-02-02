@@ -38,8 +38,12 @@ export default React.createClass({
         <img className="img-responsive" style={trans} src="/Users/nate/Desktop/Mauck's Obits/IMG_3804.JPG" />
 
         <div className="rotate">
-          <button onClick={this.rotateLeft} className="btn btn-default btn-sm"><span className="fa fa-rotate-right"></span></button>
-          <button onClick={this.rotateRight} className="btn btn-default btn-sm">right</button>
+          <button onClick={this.rotateLeft} className="btn btn-default btn-sm">
+            <span className="fa fa-rotate-left"></span>
+          </button>
+          <button onClick={this.rotateRight} className="btn btn-default btn-sm">
+            <span className="fa fa-rotate-right"></span>
+          </button>
         </div>
 
       </div>
