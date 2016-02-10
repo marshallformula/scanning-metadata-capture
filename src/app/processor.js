@@ -7,6 +7,6 @@ const trace = curry((tag, x) => {
   return x;
 });
 
-const persistDocument = compose(chain(saveAttachment), trace('afterertb'), chain(readFileToBuffer), trace('aftersave'), save);
+const persistDocument = compose(chain(saveAttachment), chain(readFileToBuffer), save);
 
 export { persistDocument };

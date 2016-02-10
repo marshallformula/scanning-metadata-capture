@@ -1,9 +1,10 @@
 import React from 'react';
-import { readFileToBuffer } from '../util/fileReader';
+import { readFileToBuffer, checksum } from '../util/fileReader';
 import { persistDocument } from '../processor';
 
-import {getAttachment} from '../db/docs';
+import {getAttachment, get} from '../db/docs';
 import fs from 'fs';
+import { map, compose } from 'ramda';
 
 export default React.createClass({
   propTypes: {
@@ -26,15 +27,20 @@ export default React.createClass({
       filePath: img
     };
 
-    // const saved = persistDocument(doc);
-    // const saved = get('691FCF05-9D9B-EF6A-8F6C-FE4F641CE8EF');
-    const saved = getAttachment('691FCF05-9D9B-EF6A-8F6C-FE4F641CE8EF', 'IMG_3804.JPG');
-    saved.fork(err => console.error(err), data => {
-      fs.writeFile('/Users/nate/Desktop/sup.jpg', data, (err, stuff) => {
+
+    const hash = compose(map(checksum), readFileToBuffer);
+    hash(img).fork(console.error.bind(console), console.log.bind(console));
+
+    //const saved = persistDocument(doc);
+     //const saved = get('45476025-EB8F-7256-842F-E44885C5DCCB');
+     //const saved = getAttachment('45476025-EB8F-7256-842F-E44885C5DCCB', 'IMG_3804.JPG');
+    //saved.fork(err => console.error(err), data => {
+    //  console.log(data);
+      /*fs.writeFile('/Users/nate/Desktop/sup.jpg', data, (err, stuff) => {
         if(err) console.error(err);
         console.log(stuff, 'done');
-      });
-    });
+      });*/
+    //});
 
   },
 
