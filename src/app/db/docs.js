@@ -5,8 +5,8 @@ import Task from 'data.task';
 
 const save = doc => {
   return new Task((rej, res) => {
-    db.post(doc).then(saved => {
-      console.log('SAVED IS ', saved);
+    db.put(doc.toObject()).then(saved => {
+      // console.log('SAVED IS ', saved);
       res(Object.assign({}, saved, doc));
     }).catch(rej);
   });
@@ -24,12 +24,12 @@ const getAttachment = curry((docId, attachmentId) => {
   return new Task((rej, res) => db.getAttachment(docId, attachmentId).then(res).catch(rej));
 });
 
-const saveAttachment = ({ doc, buffer }) => {
+const saveAttachment = curry((buffer, doc) => {
   const fileName = basename(doc.filePath);
   const type = `image/${extname(fileName).substring(1).toLowerCase()}`;
   return new Task((rej, res) => {
     db.putAttachment(doc.id, fileName, doc.rev, buffer, type).then(res).catch(rej);
   });
-};
+});
 
 export { save, update, get, getAttachment, saveAttachment };

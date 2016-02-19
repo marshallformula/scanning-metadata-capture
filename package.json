@@ -33,6 +33,7 @@
     "bootstrap": "3.3.6",
     "bunyan": "1.5.1",
     "chokidar": "1.2.0",
+    "control.async": "0.5.2",
     "data.task": "3.0.0",
     "font-awesome": "4.4.0",
     "immutable": "3.7.6",

@@ -1,10 +1,11 @@
 import React from 'react';
-import { readFileToBuffer, checksum } from '../util/fileReader';
-import { persistDocument } from '../processor';
+// import { readFileToBuffer, checksum } from '../util/fileReader';
+import { processDocument } from '../processor';
+import { Map } from 'immutable';
 
-import {getAttachment, get} from '../db/docs';
-import fs from 'fs';
-import { map, compose } from 'ramda';
+// import {getAttachment, get} from '../db/docs';
+// import fs from 'fs';
+// import { map, compose, chain } from 'ramda';
 
 export default React.createClass({
   propTypes: {
@@ -20,28 +21,15 @@ export default React.createClass({
   },
 
   saveImg() {
-    const img = '/Users/nate/Desktop/Mauck\'s Obits/IMG_3804.JPG';
-    const doc = {
+    const doc = Map({
       some: 'value',
       goes: 'here',
-      filePath: img
-    };
+      filePath: '/Users/nate/Desktop/Mauck\'s Obits/IMG_3804.JPG'
+    });
 
-
-    const hash = compose(map(checksum), readFileToBuffer);
-    hash(img).fork(console.error.bind(console), console.log.bind(console));
-
-    //const saved = persistDocument(doc);
-     //const saved = get('45476025-EB8F-7256-842F-E44885C5DCCB');
-     //const saved = getAttachment('45476025-EB8F-7256-842F-E44885C5DCCB', 'IMG_3804.JPG');
-    //saved.fork(err => console.error(err), data => {
-    //  console.log(data);
-      /*fs.writeFile('/Users/nate/Desktop/sup.jpg', data, (err, stuff) => {
-        if(err) console.error(err);
-        console.log(stuff, 'done');
-      });*/
-    //});
-
+    const saved = processDocument(doc);
+    console.log(saved);
+    saved.fork(console.error.bind(console), console.log.bind(console));
   },
 
   render() {
