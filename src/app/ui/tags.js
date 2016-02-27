@@ -1,9 +1,8 @@
 import React from 'react';
-// import { readFileToBuffer, checksum } from '../util/fileReader';
 import { processDocument } from '../processor';
 import { Map } from 'immutable';
 
-// import {getAttachment, get} from '../db/docs';
+import { all, getAttachment, get} from '../db/docs';
 // import fs from 'fs';
 // import { map, compose, chain } from 'ramda';
 
@@ -13,23 +12,27 @@ export default React.createClass({
   },
 
   getInitialState() {
-    return { style: {} };
+    return {style: {}};
   },
 
   componentWillReceiveProps() {
-    this.setState({style: { left: this.props.left }});
+    this.setState({style: {left: this.props.left}});
   },
 
   saveImg() {
-    const doc = Map({
+
+    const doc = {
       some: 'value',
       goes: 'here',
       filePath: '/Users/nate/Desktop/Mauck\'s Obits/IMG_3804.JPG'
-    });
+    };
 
-    const saved = processDocument(doc);
-    console.log(saved);
-    saved.fork(console.error.bind(console), console.log.bind(console));
+
+    //processDocument(doc).subscribe(console.log.bind(console), console.error.bind(console), () => console.log('done!'));
+
+    all({include_docs: true}).subscribe(console.log.bind(console), console.error.bind(console), () => console.log('done?'));
+
+
   },
 
   render() {
@@ -37,7 +40,7 @@ export default React.createClass({
       <div id="tags" style={this.state.style}>
         <p>this is the tkjkjags</p>
         <div id="content">
-            <button className="btn btn-primary" onClick={this.saveImg}>save it</button>
+          <button className="btn btn-primary" onClick={this.saveImg}>save it</button>
         </div>
       </div>
     );

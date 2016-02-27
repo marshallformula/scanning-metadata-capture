@@ -1,25 +1,17 @@
-import Task from 'data.task';
-// import { Observable } from 'rx';
+import { Observable } from 'rx';
 import { readFile } from 'fs';
 import { createHash } from 'crypto';
 
 
-export function readFileToBuffer(doc) {
-  return new Task((rej, res) => {
-    readFile(doc, (err, buffer) => {
-      if(err) return rej(err);
-      // console.log('read buffer ', buffer);
-      res(buffer);
-    });
-  });
-}
+// readFileToBuffer :: doc -> Observable
+const readFileToBuffer = file => Observable.fromNodeCallback(readFile)(file);
 
-export function checksum(data, algorithm = 'md5', encoding = 'hex') {
+function checksum(data, algorithm = 'md5', encoding = 'hex') {
   return createHash(algorithm)
     .update(data, 'utf8')
     .digest(encoding);
 }
 
-export function fileExists(file) {
-  
-}
+const fileExists = file => Observable.fromNodeCallback(stat)(file);
+
+export { readFileToBuffer, checksum, fileExists };

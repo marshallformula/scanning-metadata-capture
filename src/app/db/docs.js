@@ -1,35 +1,22 @@
 import db from './db';
-import { curry } from 'ramda';
+import { Observable } from 'rx';
 import { extname, basename } from 'path';
-import Task from 'data.task';
 
-const save = doc => {
-  return new Task((rej, res) => {
-    db.put(doc.toObject()).then(saved => {
-      // console.log('SAVED IS ', saved);
-      res(Object.assign({}, saved, doc));
-    }).catch(rej);
-  });
-};
+const fromPromise = Observable.fromPromise;
 
-const update = doc => {
-  return new Task((rej, res) => db.put(doc).then(res).catch(rej));
-};
+const save = doc => fromPromise(db.put(doc));
 
-const get = id => {
-  return new Task((rej, res) => db.get(id).then(res).catch(rej));
-};
+const get = id => fromPromise(db.get(id));
 
-const getAttachment = curry((docId, attachmentId) => {
-  return new Task((rej, res) => db.getAttachment(docId, attachmentId).then(res).catch(rej));
-});
+const getAttachment = (docId, attachmentId) => fromPromise(db.getAttachment(docId, attachmentId));
 
-const saveAttachment = curry((buffer, doc) => {
+const saveAttachment = (buffer, doc) => {
+  console.log('trying to save attachment for ', doc);
   const fileName = basename(doc.filePath);
   const type = `image/${extname(fileName).substring(1).toLowerCase()}`;
-  return new Task((rej, res) => {
-    db.putAttachment(doc.id, fileName, doc.rev, buffer, type).then(res).catch(rej);
-  });
-});
+  return fromPromise(db.putAttachment(doc.id, fileName, doc.rev, buffer, type));
+};
 
-export { save, update, get, getAttachment, saveAttachment };
+const all = (opts) => fromPromise(db.allDocs(opts));
+
+export { save, get, getAttachment, saveAttachment, all };
