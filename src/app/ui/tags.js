@@ -1,10 +1,7 @@
 import React from 'react';
 import { processDocument } from '../processor';
 import { Map } from 'immutable';
-
-import { all, getAttachment, get} from '../db/docs';
-// import fs from 'fs';
-// import { map, compose, chain } from 'ramda';
+// import { all, getAttachment, get} from '../db/docs';
 
 export default React.createClass({
   propTypes: {
@@ -29,8 +26,7 @@ export default React.createClass({
 
 
     //processDocument(doc).subscribe(console.log.bind(console), console.error.bind(console), () => console.log('done!'));
-
-    all({include_docs: true}).subscribe(console.log.bind(console), console.error.bind(console), () => console.log('done?'));
+    // all({include_docs: true}).subscribe(console.log.bind(console), console.error.bind(console), () => console.log('done?'));
 
 
   },

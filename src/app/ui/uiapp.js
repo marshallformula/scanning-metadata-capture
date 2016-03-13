@@ -2,8 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Viewer from './ui/viewer';
 import Tags from './ui/tags';
-import Rx from 'rx';
+import Settings from './ui/settings/settings-modal';
 import { Map } from 'immutable';
+import Rx from '@reactivex/rxjs';
 
 const App = React.createClass({
   getInitialState() {
@@ -31,6 +32,7 @@ const App = React.createClass({
     return (
       <div id="main" ref="main">
         <header />
+        <Settings></Settings>
         <Viewer right={data.get('right')}/>
         <div id="divider" style={data.get('style')} ref="divider"></div>
         <Tags left={data.get('style').left}/>

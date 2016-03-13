@@ -1,10 +1,10 @@
-import { Observable } from 'rx';
+import Rx from '@reactivex/rxjs';
 import { readFile } from 'fs';
 import { createHash } from 'crypto';
 
 
 // readFileToBuffer :: doc -> Observable
-const readFileToBuffer = file => Observable.fromNodeCallback(readFile)(file);
+const readFileToBuffer = file => Rx.Observable.bindNodeCallback(readFile)(file);
 
 function checksum(data, algorithm = 'md5', encoding = 'hex') {
   return createHash(algorithm)
@@ -12,6 +12,6 @@ function checksum(data, algorithm = 'md5', encoding = 'hex') {
     .digest(encoding);
 }
 
-const fileExists = file => Observable.fromNodeCallback(stat)(file);
+const fileExists = file => Rx.Observable.bindNodeCallback(stat)(file);
 
 export { readFileToBuffer, checksum, fileExists };
