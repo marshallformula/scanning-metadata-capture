@@ -8,4 +8,15 @@
     z-index: 9;
     background-color: rgba(0, 0, 0, 0.7);
   }
+
+  .modal-box {
+    position: absolute;
+    z-index: 11;
+    background-color: #fff;
+    top: 150px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 400px;
+  }
 }

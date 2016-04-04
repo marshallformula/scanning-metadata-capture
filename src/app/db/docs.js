@@ -1,5 +1,5 @@
 import db from './db';
-import { Observable } from 'rx';
+import { Observable } from '@reactivex/rxjs';
 import { extname, basename } from 'path';
 
 const fromPromise = Observable.fromPromise;
