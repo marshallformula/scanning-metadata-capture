@@ -7,7 +7,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "prestart": "npm run build",
-    "start": "electron . | bunyan",
+    "start": "electron . ",
     "predev": "npm run build",
     "dev": "gulp watch",
     "build": "gulp build",
@@ -33,16 +33,16 @@
     "@reactivex/rxjs": "5.0.0-beta.2",
     "bootstrap": "3.3.6",
     "chokidar": "1.2.0",
-    "debug": "2.2.0",
     "font-awesome": "4.4.0",
     "immutable": "3.7.6",
     "material-ui": "0.15.0-alpha.1",
     "moment": "2.11.0",
     "pouchdb": "5.2.1",
-    "react": "0.14.7",
-    "react-dom": "0.14.7",
+    "react": "15.0.1",
+    "react-dom": "15.0.1",
     "react-redux": "4.4.1",
     "react-tap-event-plugin": "0.2.2",
-    "redux": "3.3.1"
+    "redux": "3.3.1",
+    "winston": "2.2.0"
   }
 }
