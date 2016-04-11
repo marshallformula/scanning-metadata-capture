@@ -4,8 +4,6 @@ const Viewer = ({ right, rotation, rotateLeft, rotateRight }) => {
   const style = { right }
   const trans = { transform: `rotateZ(${rotation}deg)`};
 
-  console.log(rotateLeft)
-
   return (
     <div id="viewer" style={style}>
 

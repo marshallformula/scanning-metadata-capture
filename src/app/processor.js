@@ -1,5 +1,5 @@
 import { readFileToBuffer, checksum } from './util/fileReader';
-import { save, saveAttachment } from './db/docs';
+import { save, saveAttachment } from './db/docs-dao';
 
 const processDocument = doc => {
   return readFileToBuffer(doc.filePath)

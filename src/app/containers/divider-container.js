@@ -4,7 +4,7 @@ import Rx from '@reactivex/rxjs'
 import winston from 'winston'
 import ViewerContainer from '../containers/viewer-container'
 import Tags from '../components/tags'
-import Settings from '../components/settings-modal'
+import SettingsModalContainer from '../containers/settings-modal-container'
 import { moveDivider } from '../actions'
 
 let Dividerer = React.createClass({
@@ -28,7 +28,7 @@ let Dividerer = React.createClass({
     return (
       <div id="main" ref="main">
         <header />
-        { /*<Settings />*/ }
+        <SettingsModalContainer />
         <ViewerContainer right={this.props.right}/>
         <div id="divider" style={divStyle} ref="divider"></div>
         <Tags left={this.props.left}/>
