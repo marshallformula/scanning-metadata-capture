@@ -1,23 +1,21 @@
 import React, { PropTypes } from 'react'
 import SettingsModal from '../components/settings-modal'
-import { saveSettings } from '../actions'
+import { fetchSettings, persistSettings } from '../actions'
 import { connect } from 'react-redux'
-import { save } from '../db/settings-dao'
 
 const mapStateToProps = ({ settings }) => ({ settings })
 
-const mapDispatchtoProps = dispatch => ({
-  save(settings){
+const mapDispatchToProps = dispatch => ({
+  saveSettings(settings){
     console.log('saving ', settings)
-    save(settings).subscribe(
-      saved => {
-        console.log('saved is ', saved)
-        dispatch(saveSettings({srcDir: saved.srcDir}))
-      }
-    )
+    dispatch(persistSettings(settings))
+  },
+  
+  fetchSettings() {
+    dispatch(fetchSettings())
   }
 })
 
-const SettingsModalContainer = connect(mapStateToProps, mapDispatchtoProps)(SettingsModal)
+const SettingsModalContainer = connect(mapStateToProps, mapDispatchToProps)(SettingsModal)
 
 export default SettingsModalContainer

@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Rx from '@reactivex/rxjs'
-import winston from 'winston'
 import ViewerContainer from '../containers/viewer-container'
 import Tags from '../components/tags'
 import SettingsModalContainer from '../containers/settings-modal-container'
@@ -20,15 +19,18 @@ let Dividerer = React.createClass({
 
       this.props.dispatch(moveDivider({left: x, right: this.refs.main.clientWidth - x}))
 
-    }, (err) => winston.error(err));
+    }, (err) => console.error(err));
   },
 
   render() {
+
+    const settingsModal = false ? <SettingsModalContainer /> : undefined;
+
     const divStyle = this.props.left ? { left: this.props.left } : {}
     return (
       <div id="main" ref="main">
         <header />
-        <SettingsModalContainer />
+        {settingsModal}
         <ViewerContainer right={this.props.right}/>
         <div id="divider" style={divStyle} ref="divider"></div>
         <Tags left={this.props.left}/>

@@ -1,9 +1,12 @@
 import React from 'react'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
+import thunk from 'redux-thunk'
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-import scanningApp from './reducers'
+import scanningAppReducers from './reducers'
 import Dividerer from './containers/divider-container'
 
 import injectTapEventPlugin from 'react-tap-event-plugin'
@@ -13,11 +16,13 @@ import injectTapEventPlugin from 'react-tap-event-plugin'
 // https://github.com/zilverline/react-tap-event-plugin
 injectTapEventPlugin()
 
-const store = createStore(scanningApp)
+const store = createStore(scanningAppReducers, applyMiddleware(thunk))
 const App = () => <Dividerer />
 
 
 render(<Provider store={store}>
-        <App />
+        <MuiThemeProvider muiTheme={getMuiTheme()}>
+          <App />
+        </MuiThemeProvider>
       </Provider>,
       document.getElementById('app'));
