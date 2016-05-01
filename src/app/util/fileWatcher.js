@@ -1,4 +1,5 @@
 import chokidar from 'chokidar';
+import { Observable } from '@reactivex/rxjs'
 
 export default {
   watch(path) {
@@ -7,23 +8,14 @@ export default {
       persistent: true, ignored: /[\/\\]\./
     });
 
-    return {
-      added(cb) {
-        choker.on('add', path => cb(path));
-      },
-      
-      changed(cb) {
-        choker.on('change', path => cb(path));
-      },
-      
-      deleted(cb) {
-        choker.on('ulink', path => cb(path));
-      },
-      
-      error(cb) {
-        choker.on('error', err => cb(err));
-      }
-    }
+    return Observable.create(observer => {
+      choker.on('add', file => observer.next({event: 'add', file}))
+      choker.on('change', file => observer.next({event: 'change', file}))
+      choker.on('unlink', file => observer.next({event: 'unlink', file}))
+      choker.on('error', err => observer.error(err))
+
+      return () => choker.close()
+    })
 
   }
 }

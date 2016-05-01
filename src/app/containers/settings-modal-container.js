@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 import SettingsModal from '../components/settings-modal'
-import { fetchSettings, persistSettings } from '../actions'
+import { fetchSettings, persistSettings, toggleModal } from '../actions'
 import { connect } from 'react-redux'
 
 const mapStateToProps = ({ settings }) => ({ settings })
@@ -13,6 +13,10 @@ const mapDispatchToProps = dispatch => ({
   
   fetchSettings() {
     dispatch(fetchSettings())
+  },
+
+  closeModal() {
+    dispatch(toggleModal())
   }
 })
 

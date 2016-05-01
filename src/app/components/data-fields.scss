@@ -1,0 +1,14 @@
+#dfScreen {
+  position: absolute;
+  background-color: aliceblue;
+  z-index: 15;
+  height: 100%;
+  width: 100%;
+  top: -100%;
+  transition: top 300ms ease-out;
+
+  &.showing {
+    transition: top 300ms ease-out;
+    top: 0;
+  }
+}

@@ -1,5 +1,5 @@
 import Rx from '@reactivex/rxjs';
-import { readFile } from 'fs';
+import { readFile, stat } from 'fs';
 import { createHash } from 'crypto';
 
 

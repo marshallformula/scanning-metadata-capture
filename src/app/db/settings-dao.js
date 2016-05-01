@@ -4,7 +4,6 @@ import { Observable } from '@reactivex/rxjs';
 const settingsId = 'smsSettings'
 
 const save = settings => {
-  console.log('in dao saving ', settings)
   if(!settings._id) {
     settings._id = settingsId
   }
