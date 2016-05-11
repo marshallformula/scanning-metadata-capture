@@ -33,7 +33,7 @@ let Divider = React.createClass({
         forceModal()
       }
     })
-    
+
     const mouseDown$ = Rx.Observable.fromEvent(this.refs.divider, 'mousedown');
     const mouseMove$ = Rx.Observable.fromEvent(document, 'mousemove');
     const mouseUp$ = Rx.Observable.fromEvent(document, 'mouseup');
@@ -56,6 +56,7 @@ let Divider = React.createClass({
     const divStyle = left ? { left } : {}
     return (
       <div id="main" ref="main">
+
         <header>
           <button className="btn btn-link pull-right" onClick={toggleModal}>
             <span className="fa fa-cog" /> settings

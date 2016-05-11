@@ -1,4 +1,5 @@
 import { retrieveSettings, save } from '../db/settings-dao'
+import { saveFields, retrieveFields } from '../db/fields-dao'
 
 export const DIVIDER_RESIZE = Symbol('DIVIDER_RESIZE')
 export const moveDivider = position => ({ type: DIVIDER_RESIZE, position })
@@ -33,5 +34,19 @@ export const fetchSettings = () => dispatch => {
   })
 }
 
+export const RECEIVE_FIELDS = Symbol('RECEIVE_FIELDS')
+export const receiveFields = fieldData => ({ type: RECEIVE_FIELDS, fieldData })
+
+export const PERSIST_FIELDS = Symbol('PERSIST_FIELDS')
+export const persistFields = fieldData => dispatch => {
+  saveFields(fieldData).subscribe({
+    next: data => dispatch(receiveFields(data)),
+    error: err => dispatch(dbError(err))
+  })
+}
+
 export const TOGGLE_SHOWING_DATAFIELDS = Symbol('TOGGLE_SHOWING_DATAFIELDS')
 export const toggleShowingDatafields = () => ({ type: TOGGLE_SHOWING_DATAFIELDS })
+
+export const TOGGLE_SHOWING_ADDFIELD = Symbol('TOGGLE_SHOWING_ADDFIELD')
+export const toggleShowingAddField = () => ({ type: TOGGLE_SHOWING_ADDFIELD })

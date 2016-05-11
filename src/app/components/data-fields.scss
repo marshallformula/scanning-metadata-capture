@@ -1,14 +1,45 @@
 #dfScreen {
   position: absolute;
-  background-color: aliceblue;
+  background-color: whitesmoke;
   z-index: 15;
   height: 100%;
   width: 100%;
   top: -100%;
   transition: top 300ms ease-out;
+  padding: 20px;
 
   &.showing {
     transition: top 300ms ease-out;
     top: 0;
   }
+
+  h1 {
+    display: inline-block;
+  }
+
+  .overlay {
+    background-color: rgba(0, 0, 0, 0.3);
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+
+    .add-field {
+      width: 400px;
+      height: 150px;
+      margin: auto;
+      margin-top: 100px;
+      padding: 20px;
+
+      .buttons {
+        height: 80px;
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
+      }
+    }
+  }
+
+
 }

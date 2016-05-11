@@ -1,12 +1,20 @@
-import { toggleShowingDatafields } from '../actions'
+import { toggleShowingDatafields, persistFields } from '../actions'
 import { connect } from 'react-redux'
 import DataFields from '../components/data-fields'
 
-const mapStateToProps = ({ dataFields }) => ({ dataFields })
+const mapStateToProps = ({ fields, ui }) => ({
+  fields,
+  showDataFields: ui.showDataFields,
+  showAddField: ui.showAddField
+})
 
 const mapDispatchToProps = dispatch => ({
   close() {
     dispatch(toggleShowingDatafields())
+  },
+
+  saveFields(fieldData) {
+    dispatch(persistFields(fieldData))
   }
 })
 
